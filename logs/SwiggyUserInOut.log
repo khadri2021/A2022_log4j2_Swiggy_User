@@ -1,0 +1,13 @@
+2023-12-26 09:23:41.048 [http-nio-8080-exec-2] INFO  swiggy.user.logger -
+ {
+  "orderName" : "Cake",
+  "orderQty" : 2,
+  "phoneNumber" : 9440877300
+}
+2023-12-26 09:23:41.112 [http-nio-8080-exec-2] INFO  swiggy.user.logger -
+ {
+  "headers" : { },
+  "body" : null,
+  "statusCode" : "ACCEPTED",
+  "statusCodeValue" : 202
+}
