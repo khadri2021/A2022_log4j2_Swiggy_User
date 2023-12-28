@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.khadri.log4j.swiggy.model.PlaceOrderRequest;
+import com.khadri.log4j.swiggy.model.PlaceOrderResponse;
 import com.khadri.log4j.swiggy.user.aspect.SwiggyUserInOut;
 import com.khadri.log4j.swiggy.user.mapper.PlaceOrderRequestMapper;
 import com.khadri.log4j.swiggy.user.request.OrderRequest;
@@ -25,14 +26,14 @@ public class SwiggyUserController {
 	private PlaceOrderRequestMapper placeOrderRequestMapper;
 
 	@PostMapping("/order/request")
-	@SwiggyUserInOut(logger = "swiggy.user.logger", request = "#args[0]")
-	public ResponseEntity<HttpStatus> userRequest(@RequestBody OrderRequest orderRequest) {
+	@SwiggyUserInOut(request = "#args[0]")
+	public ResponseEntity<PlaceOrderResponse> userRequest(@RequestBody OrderRequest orderRequest) {
 
 		PlaceOrderRequest placeOrderReq = placeOrderRequestMapper.map(orderRequest);
 
-		swiggyUserService.placeOrder(placeOrderReq);
+		PlaceOrderResponse placeOrderResponse = swiggyUserService.placeOrder(placeOrderReq);
 
-		return new ResponseEntity<HttpStatus>(HttpStatus.ACCEPTED);
+		return new ResponseEntity<PlaceOrderResponse>(placeOrderResponse,HttpStatus.ACCEPTED);
 	}
 
 }

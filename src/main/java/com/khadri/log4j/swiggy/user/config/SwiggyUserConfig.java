@@ -1,5 +1,8 @@
 package com.khadri.log4j.swiggy.user.config;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
@@ -16,6 +19,11 @@ import com.khadri.log4j.swiggy.user.request.OrderRequest;
 
 @Configuration
 public class SwiggyUserConfig {
+
+	@Bean
+	public ExecutorService executorService() {
+		return Executors.newFixedThreadPool(10);
+	}
 
 	@Bean
 	public PlaceOrderRequestMapper placeOrderRequestMapper() {
